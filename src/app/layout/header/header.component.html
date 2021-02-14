@@ -1,0 +1,18 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a [routerLink]=" ['/'] " class="navbar-brand">
+    <!-- <img src="" alt=""> -->
+    Github Finder App
+  </a>
+
+  <div class="navbar-collapse">
+    <div class="navbar-nav ml-auto">
+      <div *ngIf="email" class="navbar-text float-left">
+        {{email}}
+      </div>
+      <a [routerLink]=" ['/'] " class="nav-item nav-link">Home</a>
+      <a *ngIf="!email" [routerLink]=" ['/signin'] " routerLinkActive="active" class="nav-item nav-link">Signin</a>
+      <a *ngIf="!email" [routerLink]=" ['/signup'] " outerLinkActive="active" class="nav-item nav-link">Signup</a>
+      <a *ngIf="email" class="nav-item nav-link" (click)="handleSignOut()">Logout</a>
+    </div>
+  </div>
+</nav>
