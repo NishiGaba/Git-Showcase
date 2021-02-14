@@ -30,3 +30,58 @@
     </div>
   </div>
 </div>
+
+
+<div class="query-link bg-primary" [ngClass]="{'active-query' : queryBlock == false}">
+  <span>Have any Queries? </span>
+  <span><a role="button" (click)="openModal()"> Click here</a></span>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display}">
+  <!-- <div class="modal-dialog" role="document"> -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Send your Query</h4>
+        <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body">
+        <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+          <div class="form-group row">
+            <label for="email" class="col-sm-3 col-form-label">Email</label>
+            <div class="col-sm-9">
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                name="email"
+                value = {{email}}
+                ngModel
+                required
+                disabled
+              />
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="email" class="col-sm-3 col-form-label">Description</label>
+            <div class="col-sm-9">
+              <textarea
+                class="form-control"
+                id="desciption"
+                name="description"
+                ngModel
+                placeholder="Enter Feedback"
+                rows="3"
+                required>
+              </textarea>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" type="submit">
+          Send
+        </button>
+      </div>
+    </div>
+  <!-- </div> -->
+</div>
