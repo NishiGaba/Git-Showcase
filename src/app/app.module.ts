@@ -17,7 +17,7 @@ import { SignupComponent } from './pages/signup/signup.component';
 
 import { AuthService } from './services/auth.service';
 import { GithubService } from './services/github.service';
-import { AngularFireAuthGuard } from '@angular/fire/auth-guard';  
+import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
 
 //form and httpclient
 import { FormsModule } from "@angular/forms";
@@ -26,11 +26,14 @@ import { HttpClientModule } from "@angular/common/http";
 //firebase related imports
 import { AngularFireAuthModule } from "@angular/fire/auth";
 import { AngularFireModule } from "@angular/fire";
+import { AngularFireStorageModule } from "@angular/fire/storage";
+import { AngularFireDatabaseModule } from "@angular/fire/database";
 
 //for toastr
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ToastrModule } from "ngx-toastr";
 import { environment } from 'src/environments/environment';
+import { QueriesComponent } from './pages/queries/queries.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +45,8 @@ import { environment } from 'src/environments/environment';
     HomeComponent,
     PagenotfoundComponent,
     SigninComponent,
-    SignupComponent
+    SignupComponent,
+    QueriesComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +56,9 @@ import { environment } from 'src/environments/environment';
     ToastrModule.forRoot(),
     FormsModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    AngularFireDatabaseModule,
+    AngularFireStorageModule
   ],
   providers: [AuthService, GithubService, AngularFireAuthGuard],
   bootstrap: [AppComponent]

@@ -1,7 +1,16 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { GithubService } from 'src/app/services/github.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { QueryService } from 'src/app/services/query.service';
 import { NgForm } from "@angular/forms";
+import { ToastrService } from "ngx-toastr";
+
+//firebase
+import { AngularFireStorage } from "@angular/fire/storage";
+import { AngularFireDatabase } from "@angular/fire/database";
+
+//uuid
+import { v4 as uuidv4 } from "uuid";
 
 @Component({
   selector: 'app-home',
@@ -13,6 +22,7 @@ export class HomeComponent implements OnInit {
   user = null;
   userName: string;
   email= null;
+  description = '';
   error = null;
   queryBlock = false;
   display = "none";
@@ -20,7 +30,11 @@ export class HomeComponent implements OnInit {
   constructor(
     private githubService: GithubService,
     private auth: AuthService,
-    private ref: ChangeDetectorRef
+    private query: QueryService,
+    private ref: ChangeDetectorRef,
+    private db: AngularFireDatabase,
+    private storage: AngularFireStorage,
+    private toastr: ToastrService,
     ) {
       auth.getUser().subscribe((user) => {
         if(user != null) {
@@ -62,8 +76,23 @@ export class HomeComponent implements OnInit {
     this.display = "none";
   }
 
-  onSubmit(f: NgForm) {
-
+  onSubmit() {
+    // const { email, description } = f.form.value;
+    console.log(this.email, this.description);
+    const uid = uuidv4();
+    this.db.object(`/queries/${uid}`)
+      .set({
+        id: uid,
+        email: this.email,
+        description: this.description,
+        date: Date.now(),
+      })
+      .then(() => {
+        this.toastr.success("Query added successfully");
+      })
+      .catch((err) => {
+        this.toastr.error("Oopsss, try again!");
+      });
   }
 
 }
