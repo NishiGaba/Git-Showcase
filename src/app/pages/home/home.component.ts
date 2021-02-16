@@ -77,7 +77,6 @@ export class HomeComponent implements OnInit {
   }
 
   onSubmit() {
-    // const { email, description } = f.form.value;
     console.log(this.email, this.description);
     const uid = uuidv4();
     this.db.object(`/queries/${uid}`)
