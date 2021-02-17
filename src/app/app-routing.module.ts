@@ -22,7 +22,7 @@ const routes: Routes = [
   { path: 'signup',
   component: SignupComponent
   },
-  { path: 'queries',
+  { path: 'mails',
   component: QueriesComponent
   },
   { path: '',

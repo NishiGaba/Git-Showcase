@@ -34,6 +34,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ToastrModule } from "ngx-toastr";
 import { environment } from 'src/environments/environment';
 import { QueriesComponent } from './pages/queries/queries.component';
+import { HelpComponent } from './widget/help/help.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { QueriesComponent } from './pages/queries/queries.component';
     PagenotfoundComponent,
     SigninComponent,
     SignupComponent,
-    QueriesComponent
+    QueriesComponent,
+    HelpComponent
   ],
   imports: [
     BrowserModule,

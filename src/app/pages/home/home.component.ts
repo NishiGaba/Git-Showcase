@@ -59,39 +59,4 @@ export class HomeComponent implements OnInit {
       }
     );
   }
-
-  toggleQueryBlock(flag) {
-    console.log(flag);
-    if(flag == 'open') {
-      this.queryBlock = true;
-    } else {
-      this.queryBlock = false;
-    }
-  }
-
-  openModal() {
-    this.display = "block";
-  }
-  onCloseHandled() {
-    this.display = "none";
-  }
-
-  onSubmit() {
-    console.log(this.email, this.description);
-    const uid = uuidv4();
-    this.db.object(`/queries/${uid}`)
-      .set({
-        id: uid,
-        email: this.email,
-        description: this.description,
-        date: Date.now(),
-      })
-      .then(() => {
-        this.toastr.success("Query added successfully");
-      })
-      .catch((err) => {
-        this.toastr.error("Oopsss, try again!");
-      });
-  }
-
 }

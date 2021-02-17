@@ -12,7 +12,7 @@
       <a [routerLink]=" ['/'] " class="nav-item nav-link">Home</a>
       <a *ngIf="!email" [routerLink]=" ['/signin'] " routerLinkActive="active" class="nav-item nav-link">Signin</a>
       <a *ngIf="!email" [routerLink]=" ['/signup'] " outerLinkActive="active" class="nav-item nav-link">Signup</a>
-      <a *ngIf="email" [routerLink]=" ['/queries'] " routerLinkActive="active" class="nav-item nav-link">Queries</a>
+      <a *ngIf="email" [routerLink]=" ['/mails'] " routerLinkActive="active" class="nav-item nav-link">Mails</a>
       <a *ngIf="email" class="nav-item nav-link" (click)="handleSignOut()">Logout</a>
     </div>
   </div>

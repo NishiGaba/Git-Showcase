@@ -1,14 +1,18 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class QueryService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  add(email: string, description: string) {
-    // return this.auth.signInWithEmailAndPassword(email, password);
-    // return {status : true};
+  sendMail(email: string, description: string, date: any) {
+    const query = { email, description, date };
+    this.http.post<{message: string}>('http://localhost:3000/api/sendMail', query)
+    .subscribe((responseData)=>{
+      console.log(responseData.message);
+    });
   }
 }
